@@ -16,7 +16,7 @@ CREATE TABLE products (
 -- Orders table (no user_id — no login required)
 CREATE TABLE orders (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  tracking_token TEXT NOT NULL UNIQUE DEFAULT encode(gen_random_bytes(16), 'hex'),
+  tracking_token TEXT NOT NULL UNIQUE DEFAULT replace(gen_random_uuid()::text, '-', ''),
   customer_name TEXT,
   customer_phone TEXT NOT NULL,
   delivery_address TEXT NOT NULL,
